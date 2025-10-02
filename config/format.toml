@@ -1,0 +1,20 @@
+[[formats]]
+display_name = "Reference"
+score = { type = "float" }
+text = { type = "str" }
+
+[[formats]]
+display_name = "ReferenceWithCriticism"
+relevant = { type = "bool" }
+text = { type = "str" }
+
+[[formats]]
+display_name = "Criticism"
+passages = { type = "List[ReferenceWithCriticism]" }
+explanation = { type = "str" }
+sufficient = { type = "bool" }
+
+[[formats]]
+display_name = "RAGFormat"
+reference = { type = "List[str]" }
+final_answer = { type = "str" }
