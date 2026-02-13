@@ -1,0 +1,22 @@
+mcp_tools:
+  - name: "mcp_everything_stdio"
+    enabled: true
+    type: "stdio"
+    command: "npx"
+    args: "-y @modelcontextprotocol/server-everything"
+    timeout: 60
+    # env:
+    #   OPENAI_BASE_URL: "https://base.url.com"
+    #   OPENAI_API_KEY: "sk-proxy-test"
+  
+  - name: "rewriter"
+    enabled: true
+    type: "sse"
+    url: "http://localhost:8001/sse"
+    timeout: 60
+  
+  - name: "mcp_everything_streamableHTTP"
+    enabled: true
+    type: "streamable-http"
+    url: "http://localhost:3001/mcp"
+    timeout: 60

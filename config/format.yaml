@@ -1,0 +1,48 @@
+formats:
+  - display_name: "Reference"
+    fields: 
+      score: 
+        type: "float"
+      text:
+        type: "str"
+        
+  - display_name: "ReferenceWithCriticism"
+    fields: 
+      relevant: 
+        type: "bool"
+      text:
+        type: "str"
+
+  - display_name: "Criticism"
+    fields: 
+      passages: 
+        type: "List[@format:ReferenceWithCriticism]"
+      explanation:
+        type: "str"
+      sufficient:
+        type: "bool"
+
+  - display_name: "RAGFormat"
+    fields: 
+      reference: 
+        type: "List[str]"
+      final_answer:
+        type: "str"
+  
+  - display_name: "RewriteResult"
+    fields: 
+      reasoning: 
+        type: "str"
+        description: "The reasoning process of your rewrite result"
+      result:
+        type: "str"
+        description: "The rewriting result"
+  
+  - display_name: "ThinkandResponse"
+    fields: 
+      reasoning: 
+        type: "str"
+        description: "The reasoning process of your response"
+      response:
+        type: "str"
+        description: "The final response"

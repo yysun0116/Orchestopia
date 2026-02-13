@@ -1,0 +1,36 @@
+agents:
+  - name: "orchestrator_agent"
+    type: "orchestrator"
+    model: "@model:gemma3"
+    instructions: |
+      You are a helpful and intelligent assistant. The user you are helping speaks Traditional Chinese and comes from Taiwan, so in most cases, you should respond in Traditional Chinese.
+    output_type:
+      - "str"
+      - "@format:ThinkandResponse"
+    toolsets:
+      #- "@mcp_tool:local_retriever"
+      - "@mcp_tool:context7_retriever_sse"
+      - "@agent:rerwiter"
+    retries: 3
+
+  - name: "rerwiter"
+    type: "local_subagent"
+    description: |
+      An agent specialized in rewriting user's query that require external information.
+    model: "@model:gemma3"
+    instructions: |
+      You are a helpful and intelligent assistant. The user you are helping speaks Traditional Chinese and comes from Taiwan, so in most cases, you should respond in Traditional Chinese.
+      You are good at rewriting user's query based on the previous chat history if the intention of the query is ambiguous. You can also asked for more information, if you the information is not enough in the previous chat history.
+    output_type:
+      - "@format:RewriteResult"
+    toolsets:
+      - "@mcp_tool:rewriter"
+      - "@mcp_tool:mcp_everything_stdio"
+    retries: 3
+  
+  - name: "rerwiter_a2a"
+    type: "a2a_subagent"
+    description: |
+      An agent specialized in rewriting user's query that require external information.
+    base_url: "http://localhost:8000"
+
